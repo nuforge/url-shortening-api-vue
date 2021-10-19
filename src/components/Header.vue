@@ -1,16 +1,32 @@
 <template>
     <header class="header container">
-    <img src="@/assets/logo.svg" class="logo"/>
-    <nav class="nav">
+    <img src="@/assets/logo.svg" class="logo" />
+    <nav :class="{nav: true, showNav: showNav}">
       <router-link to="#" class="nav__link">Features</router-link>
       <router-link to="#" class="nav__link">Pricing</router-link>
       <router-link to="#" class="nav__link nav__link--resources">Resources</router-link>
       <router-link to="#" class="nav__link nav__link--login">Login</router-link>
       <router-link to="#" class="nav__link nav__link--signup button">Sign Up</router-link>
     </nav>
+    <div class="menu" @click="toggleNav"></div>
   </header>
 </template>
 
+<script>
+export default {
+  name: 'Header',
+  data () {
+    return {
+      showNav: false
+    }
+  },
+  methods: {
+    toggleNav () {
+      this.showNav = !this.showNav
+    }
+  }
+}
+</script>
 <style lang="scss" scoped>
 @use '../scss/utils' as *;
 @use '../scss/style.scss';
@@ -19,6 +35,7 @@
     display: flex;
     align-items: center;
     padding: rem(30) 0;
+    justify-content: space-between;
 }
 
 .nav {
@@ -39,6 +56,10 @@
     transform: translateX(-50%);
     width: 90%;
     border-radius: 1rem;
+
+    &:not(.showNav) {
+      transform: translateX(-10000px);
+    }
   }
 
   @include breakpoint(large) {
@@ -70,6 +91,36 @@
     &.button {
       color: var(--white);
     }
+  }
+}
+
+.menu {
+  width: 35px;
+  height: 5px;
+  background: black;
+  cursor: pointer;
+
+  @include breakpoint(large) {
+    display: none;
+  }
+
+  &::before {
+    content: "";
+    display: block;
+    width: 35px;
+    height: 5px;
+    background: black;
+    position: relative;
+    top: -10px;
+  }
+  &::after {
+    content: "";
+    display: block;
+    width: 35px;
+    height: 5px;
+    background: black;
+    position: relative;
+    top: 5px;
   }
 }
 </style>
