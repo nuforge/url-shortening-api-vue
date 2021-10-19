@@ -17,9 +17,15 @@ export default {
 
 .boost {
   text-align: center;
-  background: var(--dark-violet) url('../assets/bg-boost-desktop.svg');
+  background: var(--dark-violet) url('../assets/bg-boost-mobile.svg');
+  background-size: cover;
   padding: 3rem;
   color: var(--white);
+
+  @include breakpoint(large){
+    background: var(--dark-violet) url('../assets/bg-boost-desktop.svg');
+    background-size: cover;
+  }
 }
 
 </style>

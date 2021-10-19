@@ -11,9 +11,12 @@
 @use '../scss/utils' as *;
 
 .hero {
-  text-align: left;
-  padding: 2rem 30% 15rem 0;
   color: var(--grayish-Violet);
+  position: relative;
+  @include breakpoint(large) {
+  padding: 2rem 25% 15rem 0;
+    text-align: left;
+  }
 
   & p {
     margin-bottom: 2rem;
@@ -21,10 +24,12 @@
 }
 
 .illustration {
-  position: absolute;
-  right: 0;
-  transform: translateX(-10%);
-  z-index: -1
+  @include breakpoint(large) {
+    transform: translateX(26%);
+    position: absolute;
+    right: 0;
+    z-index: -1;
+  }
 }
 
 h1 {

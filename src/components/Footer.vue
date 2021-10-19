@@ -59,7 +59,7 @@ export default {
   &__links {
     flex: 1;
     font-size: rem(16);
-    font-weight: 500;
+    font-weight: 700;
 
     &--brand {
       flex: 2;
@@ -67,17 +67,25 @@ export default {
     &--social {
       display: flex;
       gap: 1rem;
+      justify-content: center;
     }
   }
 
   & .container {
     display: flex;
+    flex-direction: column;
+    gap: 2rem;
+
+    @include breakpoint(large) {
+      flex-direction: row;
+    }
   }
 
   &__links ul {
     list-style: none;
     margin: 0;
     padding: 0;
+    font-weight: 500;
   }
 
 }

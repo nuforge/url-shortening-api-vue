@@ -41,19 +41,30 @@ export default {
   }
 
   .sections {
-    display: flex;
-    flex-direction: row;
-    gap: rem(30);
+      display: flex;
+      flex-direction: column;
 
+    @include breakpoint (large) {
+      flex-direction: row;
+      gap: rem(30);
+      }
     &::before {
       content: "";
       position: absolute;
       display: block;
-      height: rem(10);
-      bottom: 30%;
-      width: rem(900);
       background: var(--cyan);
-    }
+
+      transform: translateX(rem(182));
+      height: rem(700);
+      width: rem(10);
+      @include breakpoint(large) {
+      transform: translateY(50%);
+        height: rem(10);
+        bottom: 30%;
+        width: rem(900);
+      }
+
+}
 
     & .section {
       position: relative;
@@ -63,7 +74,10 @@ export default {
       text-align: initial;
       flex: 1;
       font-size: rem(16);
-      margin-bottom: 8rem;
+      margin-bottom: 2rem;
+      @include breakpoint (large) {
+        margin-bottom: 8rem;
+      }
 
       &--detailed {
         transform: translateY(15%);
@@ -79,11 +93,15 @@ export default {
       & img {
         position:absolute;
         top: 0;
-        transform: translateY(-50%);
-        left: rem(10);
+        transform: translateY(-50%) translateX(-50%);
+        left: 50%;
         padding: 1rem;
         border-radius: 50%;
         background: var(--dark-violet);
+        @include breakpoint (large) {
+          left: rem(20);
+          transform: translateY(-50%) ;
+        }
       }
     }
 

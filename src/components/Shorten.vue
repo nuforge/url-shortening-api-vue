@@ -1,14 +1,45 @@
 <template>
-    <div class="shorten container">
-        <input type="text" name="" id="" placeholder="Shorten a link here...">
-        <button class="button">Shorten It!</button>
+  <div class="container">
+      <form @submit.prevent="shortenLink">
+    <div class="shorten">
+        <input type="text" name="" id="" placeholder="Shorten a link here..." v-model="link">
+        <button class="button" >Shorten It!</button>
     </div>
+      </form>
+  </div>
+  <div class="results">
+    <div class="container">
+      <Result v-for="(result, index) in shortened" :key="index" v-bind:resultItem="result"/>
+    </div>
+  </div>
 </template>
 
 <script>
+import Result from '@/components/Result'
 
 export default {
-  name: 'Shorten'
+  name: 'Shorten',
+  components: {
+    Result
+  },
+  data () {
+    return {
+      link: null,
+      shortened: []
+    }
+  },
+  methods: {
+    shortenLink () {
+      fetch('https://api.shrtco.de/v2/shorten?url=' + this.link)
+        .then(response => response.json())
+        .then(data => {
+          this.shortened.push({
+            original: data.result.original_link,
+            shortened: data.result.full_short_link
+          })
+        })
+    }
+  }
 }
 </script>
 
@@ -21,16 +52,22 @@ export default {
   display: flex;
   justify-content: center;
   gap: 1rem;
-  background: var(--dark-violet) url('../assets/bg-shorten-desktop.svg');
+  background: var(--dark-violet) url('../assets/bg-shorten-mobile.svg');
+  background-size: cover;
   border-radius: .5rem;
   padding: 2.5rem;
   position: relative;
   z-index: 2;
+    @include breakpoint(large) {
+      background: var(--dark-violet) url('../assets/bg-shorten-desktop.svg');
+
+    }
 
   & input {
     padding: 1rem;
     flex: 1;
     border-radius: .5rem;
+    outline: none;
   }
 
   & button {
@@ -38,6 +75,11 @@ export default {
     border: none;
     font-weight: 700;
   }
+}
+
+.results {
+  background: var(--light-gray);
+  padding-top: rem(80);
 }
 
 </style>
