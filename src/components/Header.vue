@@ -23,7 +23,6 @@
 
 .nav {
   width: 100%;
-  max-width: rem(375);
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -31,6 +30,7 @@
   padding: 1rem;
 
   @include breakpoint-down(large) {
+    max-width: rem(375);
     position: absolute;
     top: rem(80);
     z-index: 2;
