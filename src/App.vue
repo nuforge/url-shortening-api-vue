@@ -32,6 +32,8 @@ export default {
   border-radius: 2rem;
   color: var(--white);
   cursor: pointer;
+  outline: none;
+  border: none;
 }
 
 </style>
