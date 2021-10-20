@@ -36,5 +36,6 @@ h1 {
   font-size: rem(56);
   line-height: 1.1;
   color: var(--dark-violet);
+  margin-top: 0;
 }
 </style>
