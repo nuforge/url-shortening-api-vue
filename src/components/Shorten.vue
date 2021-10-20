@@ -13,7 +13,7 @@
   <div class="results">
     <div class="container">
       <Result v-for="(result, index) in shortened" :key="index" v-bind:resultItem="result"/>
-      <button @click="clearResults" class="button" v-if="shortened.length > 0">Clear Results</button>
+      <button @click="clearResults" class="button button--clear" v-if="shortened.length > 0">Clear Results</button>
     </div>
   </div>
 </template>
@@ -112,14 +112,19 @@ export default {
 }
 
 .error {
-  font-size: rem(14);
+  font-size: rem(12);
   color: red;
   display: block;
+  font-weight: 500;
 }
 
 .results {
   background: var(--light-gray);
   padding-top: rem(80);
+}
+
+.button--clear {
+  margin-top: 1rem;
 }
 
 </style>
